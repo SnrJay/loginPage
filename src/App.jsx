@@ -1,7 +1,9 @@
+import LoginSignUp from "./componets/login-signUp/loginSignUp";
+
 function App() {
   return (
     <div>
-      <h1>Hello There</h1>
+      <LoginSignUp />
     </div>
   );
 }
