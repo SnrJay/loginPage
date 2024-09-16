@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./loginSignUp.css";
 
 const LoginSignUp = () => {
-  const [action, setAction] = useState("Login");
+  const [action, setAction] = useState("Sign Up");
 
   return (
     <div className="container">
