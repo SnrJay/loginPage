@@ -41,7 +41,14 @@ const LoginSignUp = () => {
           <div></div>
         ) : (
           <div className="forgot-password">
-            Forgot password? <span>Click here</span>
+            Forgot password?{" "}
+            <span
+              onClick={() => {
+                alert("you forgot!");
+              }}
+            >
+              Click here
+            </span>
           </div>
         )}
       </div>
