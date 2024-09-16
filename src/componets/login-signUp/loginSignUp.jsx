@@ -67,7 +67,7 @@ const LoginSignUp = () => {
       </div>
       {action === "Login" ? (
         <div className="no-account">
-          Don&apos;t have an account?{" "}
+          Don&apos;t have an account?
           <span
             onClick={() => {
               setAction("Sign Up");
