@@ -38,7 +38,7 @@ const LoginSignUp = () => {
     if (!formData.password.trim()) {
       validationErrors.password = "password is required";
     } else if (formData.password.length < 6) {
-      validationErrors.password = "password is should be 6 or more characters";
+      validationErrors.password = "password should be 6 or more characters";
     }
 
     setErrors(validationErrors);
@@ -49,7 +49,7 @@ const LoginSignUp = () => {
   };
 
   return (
-    <div className="container" onSubmit={handleSubmit}>
+    <div className="container" /*onSubmit={handleSubmit}*/>
       <div className="header">
         <div className="logo">
           <span className="material-symbols-outlined">cyclone</span>
