@@ -4,8 +4,52 @@ import "./loginSignUp.css";
 const LoginSignUp = () => {
   const [action, setAction] = useState("Sign Up");
 
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
+
+  const [errors, setErrors] = useState({});
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault;
+
+    const validationErrors = {};
+
+    if (!formData.username.trim()) {
+      validationErrors.username = "username is required";
+    }
+
+    if (!formData.email.trim()) {
+      validationErrors.email = "an email address is required";
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      validationErrors.email = "a valid email address is required";
+    }
+
+    if (!formData.password.trim()) {
+      validationErrors.password = "password is required";
+    } else if (formData.password.length < 6) {
+      validationErrors.password = "password is should be 6 or more characters";
+    }
+
+    setErrors(validationErrors);
+
+    if (Object.keys(validationErrors).length === 0) {
+      alert("it worked");
+    }
+  };
+
   return (
-    <div className="container">
+    <div className="container" onSubmit={handleSubmit}>
       <div className="header">
         <div className="logo">
           <span className="material-symbols-outlined">cyclone</span>
@@ -20,22 +64,46 @@ const LoginSignUp = () => {
       <div className="inputs">
         <div className="input">
           <span className="material-symbols-outlined">person</span>
-          <input type="text" placeholder="username" />
+          <input
+            type="text"
+            name="username"
+            placeholder="username"
+            onChange={handleChange}
+          />
         </div>
+        {errors.username && (
+          <span className="error-msg">{errors.username}</span>
+        )}
 
         {action === "Login" ? (
           <div></div>
         ) : (
-          <div className="input">
-            <span className="material-symbols-outlined">mail</span>
-            <input type="email" placeholder="email" />
-          </div>
+          <>
+            <div className="input">
+              <span className="material-symbols-outlined">mail</span>
+              <input
+                type="email"
+                name="email"
+                placeholder="email"
+                onChange={handleChange}
+              />
+            </div>
+            {errors.email && <span className="error-msg">{errors.email}</span>}
+          </>
         )}
 
         <div className="input">
           <span className="material-symbols-outlined">password</span>
-          <input type="password" placeholder="password" />
+          <input
+            type="password"
+            name="password"
+            placeholder="password"
+            onChange={handleChange}
+          />
         </div>
+        {errors.password && (
+          <span className="error-msg">{errors.password}</span>
+        )}
 
         {action === "Sign Up" ? (
           <div></div>
@@ -44,7 +112,7 @@ const LoginSignUp = () => {
             Forgot password?{" "}
             <span
               onClick={() => {
-                alert("you forgot!");
+                alert("Check your mail");
               }}
             >
               Click here
@@ -56,13 +124,29 @@ const LoginSignUp = () => {
         {action === "Login" ? (
           <div></div>
         ) : (
-          <button className="submit">Sign Up</button>
+          <button
+            className="submit"
+            type="submit"
+            onClick={() => {
+              handleSubmit(formData);
+            }}
+          >
+            Sign Up
+          </button>
         )}
 
         {action === "Sign Up" ? (
           <div></div>
         ) : (
-          <button className="submit">Login</button>
+          <button
+            className="submit"
+            type="submit"
+            onClick={() => {
+              handleSubmit(formData);
+            }}
+          >
+            Login
+          </button>
         )}
       </div>
       {action === "Login" ? (

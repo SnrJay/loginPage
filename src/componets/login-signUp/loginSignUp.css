@@ -63,6 +63,12 @@
     margin: 10px 0;
 }
 
+.inputs .error-msg {
+    font-size: 14px;
+    color: #eb5656;
+    margin: 0 0 0 auto;
+}
+
 .inputs .input input {
     width: 100%;
     background: transparent;
