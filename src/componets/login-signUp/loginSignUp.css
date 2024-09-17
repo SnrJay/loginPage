@@ -94,6 +94,10 @@
     outline: none;
 }
 
+.inputs .input input::-webkit-input-placeholder {
+    color: #adadad;
+}
+
 .inputs .error input {
     width: 100%;
     background: transparent;
