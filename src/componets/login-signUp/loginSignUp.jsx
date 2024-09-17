@@ -20,13 +20,13 @@ const LoginSignUp = () => {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault;
-
+  const handleSubmit = () => {
     const validationErrors = {};
 
     if (!formData.username.trim()) {
       validationErrors.username = "username is required";
+    } else if (formData.username.length < 5) {
+      validationErrors.username = "username needs to be more than 4 characters";
     }
 
     if (!formData.email.trim()) {
@@ -49,7 +49,7 @@ const LoginSignUp = () => {
   };
 
   return (
-    <div className="container" /*onSubmit={handleSubmit}*/>
+    <div className="container">
       <div className="header">
         <div className="logo">
           <span className="material-symbols-outlined">cyclone</span>
@@ -61,8 +61,8 @@ const LoginSignUp = () => {
             : "we've missed you"}
         </p>
       </div>
-      <div className="inputs">
-        <div className="input">
+      <form className="inputs">
+        <div className={errors.username ? "error" : "input"}>
           <span className="material-symbols-outlined">person</span>
           <input
             type="text"
@@ -79,7 +79,7 @@ const LoginSignUp = () => {
           <div></div>
         ) : (
           <>
-            <div className="input">
+            <div className={errors.email ? "error" : "input"}>
               <span className="material-symbols-outlined">mail</span>
               <input
                 type="email"
@@ -92,7 +92,7 @@ const LoginSignUp = () => {
           </>
         )}
 
-        <div className="input">
+        <div className={errors.password ? "error" : "input"}>
           <span className="material-symbols-outlined">password</span>
           <input
             type="password"
@@ -119,7 +119,7 @@ const LoginSignUp = () => {
             </span>
           </div>
         )}
-      </div>
+      </form>
       <div className="button-container">
         {action === "Login" ? (
           <div></div>
@@ -151,10 +151,11 @@ const LoginSignUp = () => {
       </div>
       {action === "Login" ? (
         <div className="no-account">
-          Don&apos;t have an account?
+          Don&apos;t have an account?{" "}
           <span
             onClick={() => {
               setAction("Sign Up");
+              setErrors({});
             }}
           >
             Sign Up
@@ -166,6 +167,7 @@ const LoginSignUp = () => {
           <span
             onClick={() => {
               setAction("Login");
+              setErrors({});
             }}
           >
             Login

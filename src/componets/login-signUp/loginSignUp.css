@@ -42,7 +42,15 @@
     margin: 0 16px 0 0;
 }
 
+.error span.material-symbols-outlined {
+    margin: 0 16px 0 0;
+}
+
 .inputs .input span.material-symbols-outlined {
+    color: #adadad;
+}
+
+.inputs .error span.material-symbols-outlined {
     color: #adadad;
 }
 
@@ -63,6 +71,16 @@
     margin: 10px 0;
 }
 
+.inputs .error {
+    width: 100%;
+    border: 2px solid #eb5656;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    margin: 10px 0;
+}
+
 .inputs .error-msg {
     font-size: 14px;
     color: #eb5656;
@@ -70,6 +88,13 @@
 }
 
 .inputs .input input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+}
+
+.inputs .error input {
     width: 100%;
     background: transparent;
     border: none;
